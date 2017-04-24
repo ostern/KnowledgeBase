@@ -1,0 +1,119 @@
+﻿@model KnowledgeBase.ViewModel.IssueSolution
+
+@{
+    ViewBag.Title = "IssueSolution";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>IssueSolution</h2>
+
+<div>
+    <h4>Issue</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.ProductVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.ProductVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.ErrorCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.ErrorCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.IssueHeader)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.IssueHeader)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.IssueText)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Issue.IssueText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.DateIssueCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.DateIssueCreation)
+        </dd>
+
+    </dl>
+</div>
+<div class="col-lg-9">
+
+    @Html.ActionLink("Edit Issue", "EditIssue",
+        "Search",
+        new { id = Model.Issue.IssueID },
+        new { @class = "btn btn-success ", @id = "btnEdit", @type = "submit" }
+        )
+
+</div>
+
+<ol>
+    @if (Model.Solutions.Count > 0)
+    {
+        //for (int i = 0; i < Model.Solutions.Count; i++)
+            foreach (var solution in Model.Solutions)
+        {
+            <li>
+                <dt>
+                    Solution:
+                </dt>
+                <dd>
+
+                    @Html.Raw(solution.SolutionText)
+                </dd>
+            </li>
+        }
+    }
+
+</ol>
+<div class="col-lg-9">
+
+    @Html.ActionLink("Add Solution", "AddSolution",
+        "Search",
+        new {id = Model.Issue.IssueID},
+        new {@class = "btn btn-success", @id = "btnSubmit", @type = "submit"}
+        )
+
+</div>
+
+
+@if (System.Security.Principal.WindowsIdentity.GetCurrent().Name != Model.Issue.Username)
+{
+    <style>
+        .btnEdit {
+            display: None;
+        }
+    </style>
+}

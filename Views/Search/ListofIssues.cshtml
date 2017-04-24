@@ -1,0 +1,86 @@
+﻿@using NonFactors.Mvc.Grid;
+@model IEnumerable<KnowledgeBase.Models.Issue>
+
+@{
+    ViewBag.Title = "ListofIssues";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+    
+
+
+
+    @(
+    Html
+        .Grid(Model)
+        .Build(columns =>
+        {
+            columns.Add(model => model.Product.ProductName).Titled("Product");
+            columns.Add(model => model.ProductVersion).Titled("Prod version").Filterable(true);
+
+            columns.Add(model => model.ErrorCode).Titled("Errorcode").Filterable(true);
+            columns.Add(model => model.IssueHeader).Titled("Title").Filterable(true);
+         //   columns.Add(model => model.IssueText).Titled("Text");
+            columns.Add(model => model.IssueID).Css("issueid");
+
+        })
+             .Filterable()
+             .Sortable()
+        .Pageable(pager =>
+        {
+            pager.PagesToDisplay = 3;
+            pager.CurrentPage = 0;
+            pager.RowsPerPage = 10;
+        })
+        .Empty("no data found")
+
+    )
+
+<style>
+    .selected {
+        background-color: #F5F5F5;
+    }
+
+
+    .mvc-grid tbody tr {
+        cursor: pointer;
+    
+    }
+    .mvc-grid tbody tr:hover {
+         background-color: #F5F5F5;
+    
+    }
+    .issueid {
+        display: None; 
+    }
+</style>
+
+
+
+
+@section Scripts {
+    <script>
+
+        $('.mvc-grid').mvcgrid({
+            rowClicked: function(grid, row, data, e) {
+                $(row).siblings().removeClass('selected');
+                $(row).toggleClass('selected');
+                
+                if ($(row).hasClass('selected')) {
+                    
+                    
+                        $.ajax({
+                            // type: 'POST',
+                      //      url: 'IssueDetail/' + data["IssueID"],
+                        
+                            success: function () {
+                                document.location = '/Search/IssueDetail/' + data["IssueID"];
+                            }
+                  
+                        });
+                    }
+                }
+        });
+
+    </script>
+}

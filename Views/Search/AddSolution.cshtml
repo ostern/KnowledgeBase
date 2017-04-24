@@ -1,0 +1,163 @@
+﻿@model KnowledgeBase.ViewModel.IssueSolution
+
+@{
+    ViewBag.Title = "AddSolution";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>AddSolution</h2>
+
+<div>
+    <h4>Issue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.ProductVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.ProductVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.ErrorCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.ErrorCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.IssueHeader)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.IssueHeader)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.IssueText)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Issue.IssueText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue.DateIssueCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.DateIssueCreation)
+        </dd>
+
+    </dl>
+
+    <p>
+
+
+        @if (Model.Solutions.Count > 0)
+        {
+            foreach (var solution in Model.Solutions)
+            {
+                <dd>
+                    @Html.DisplayFor(model => solution.SolutionText)
+                </dd>
+            }
+        }
+
+    </p>
+
+
+
+
+    <div class="panel-body">
+        @using (Html.BeginForm("SaveSolution", "Search"))
+        {
+            <div class="form-horizontal">
+
+                <div class="col-lg-9">
+                    @Html.TextAreaFor(m => m.Solution.SolutionText, new { @class = "form-control", @id = "summernote", @raw = 10 })
+
+                    @Html.HiddenFor(m => m.Solution.IssueID, new { @IssueId = Model.Issue.IssueID })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <button class="btn btn-success" id="btnSubmit" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>
+
+
+    @section Scripts {
+        <script>
+           $(document).ready(function () {
+                $('#summernote').summernote({
+                    height: 300, // set editor height
+                    minHeight: null, // set minimum height of editor
+                    maxHeight: null, // set maximum height of editor
+                    focus: true,
+                    onImageUpload: function (files) {
+                            for (var i = 0; i < files.length; i++) {
+                                send(files[i]);
+                            }
+                        }
+
+                });
+           });
+
+
+
+
+            function send(file) {
+           //     if (file.type.includes('jpg')) {
+                    var name = file.name.split(".");
+                    name = name[0];
+                    console.log(name);
+                    var data = new FormData();
+                    data.append('file', file);
+                    $.ajax({
+                        url: '/Search/Savefile',
+                        type: 'POST',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: 'JSON',
+                        data: data,
+                        success: function (url) {
+                            $('#summernote').summernote('insertImage', url);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(textStatus + " " + errorThrown);
+                        }
+                    });
+               // }
+            }
+
+        </script>
+    }

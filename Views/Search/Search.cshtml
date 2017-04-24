@@ -1,0 +1,64 @@
+﻿@model KnowledgeBase.ViewModel.IssueDetails
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<h2>Search</h2>
+
+<table class="table table-bordered table-hover text-center">
+
+    <tbody>
+        <tr>
+            @foreach (var product in Model.Products)
+            {
+
+
+            <th> @Html.ActionLink(product.ProductName, "ListofIssues", new { id = product.ProductId })</th>
+
+
+            }
+        </tr>
+
+    </tbody>
+
+</table>
+
+<h2>Search</h2>
+@using (Html.BeginForm("SearchIssue", "Search", FormMethod.Get))
+{
+<div class="row">
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.Issue.ProductId)
+        @Html.DropDownListFor(m => m.Issue.ProductId, new SelectList(Model.Products, "ProductID", "ProductName"), "select Product", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Issue.ProductId)
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.Issue.ErrorCode)
+        @Html.TextBoxFor(m => m.Issue.ErrorCode, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.Issue.IssueHeader)
+        @Html.TextBoxFor(m => m.Issue.IssueHeader, new {  @class = "form-control" })
+    </div>
+
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.Issue.IssueText)
+        @Html.TextBoxFor(m => m.Issue.IssueText, new {  @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</div>
+}
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

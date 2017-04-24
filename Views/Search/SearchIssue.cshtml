@@ -1,0 +1,85 @@
+﻿@using KnowledgeBase.Models
+@using NonFactors.Mvc.Grid;
+@model IEnumerable<KnowledgeBase.Models.Issue>
+
+@{
+    ViewBag.Title = "SearchIssue";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+
+@(
+    Html
+        .Grid(Model)
+        .Build(columns =>
+        {
+            columns.Add(model => model.Product.ProductName).Titled("Product");
+            columns.Add(model => model.ProductVersion).Titled("Prod version");
+
+            columns.Add(model => model.ErrorCode).Titled("Errorcode");
+            columns.Add(model => model.IssueHeader).Titled("Title");
+       //     columns.Add(model => model.IssueText).Titled("Text");
+            columns.Add(model => model.IssueID).Css("issueid"); 
+            //Html.ActionLink("Details", "IssueDetail", new {id = model.IssueID})).Encoded(false);
+            //"<a class='details-action' href='" + Url.Action("IssueDetail", new { id = model.IssueID }) + "'><i class='fa fa-info'></i></a>")).Encoded(false); ;
+        })
+         .Sortable()
+    .Pageable(pager =>
+    {
+        pager.PagesToDisplay = 3;
+        pager.CurrentPage = 0;
+        pager.RowsPerPage = 10;
+    })
+    .Empty("no data found")
+
+)
+
+<style>
+    .selected {
+        background-color: #F5F5F5;
+    }
+
+
+    .mvc-grid tbody tr {
+        cursor: pointer;
+    }
+
+        .mvc-grid tbody tr:hover {
+            background-color: #F5F5F5;
+        }
+    .issueid {
+        display: None; 
+    }
+</style>
+
+
+
+
+@section Scripts {
+    <script>
+        $('.mvc-grid').mvcgrid({
+            rowClicked: function(grid, row, data, e) {
+
+                $(row).siblings().removeClass('selected');
+                $(row).toggleClass('selected');
+
+
+                
+                if ($(row).hasClass('selected')) {
+                    $.ajax({
+                       // type: 'POST',
+                        url: 'IssueDetail/' + data["IssueID"],
+                        
+                            success: function () {
+                                document.location = 'IssueDetail/' + data["IssueID"];
+                            }      
+                        });
+               
+                }
+            }
+        });
+    </script>
+}
