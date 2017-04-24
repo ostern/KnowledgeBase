@@ -1,7 +1,7 @@
 ﻿@model KnowledgeBase.ViewModel.IssueSolution
 
 @{
-    ViewBag.Title = "IssueSolution";
+    ViewBag.Title = "IssueDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -69,21 +69,22 @@
 
     </dl>
 </div>
+<tr></tr>
 <div class="col-lg-9">
 
     @Html.ActionLink("Edit Issue", "EditIssue",
         "Search",
         new { id = Model.Issue.IssueID },
-        new { @class = "btn btn-success ", @id = "btnEdit", @type = "submit" }
+        new { @class = "btn btn-success btnEdit", @id = "btnEdit", @type = "submit" }
         )
 
 </div>
-
+<tr></tr>
 <ol>
     @if (Model.Solutions.Count > 0)
     {
         //for (int i = 0; i < Model.Solutions.Count; i++)
-            foreach (var solution in Model.Solutions)
+        foreach (var solution in Model.Solutions)
         {
             <li>
                 <dt>
@@ -98,6 +99,7 @@
     }
 
 </ol>
+<tr></tr>
 <div class="col-lg-9">
 
     @Html.ActionLink("Add Solution", "AddSolution",

@@ -71,10 +71,10 @@
                 if ($(row).hasClass('selected')) {
                     $.ajax({
                        // type: 'POST',
-                        url: 'IssueDetail/' + data["IssueID"],
+                        url: 'IssueDetails/' + data["IssueID"],
                         
                             success: function () {
-                                document.location = 'IssueDetail/' + data["IssueID"];
+                                document.location = 'IssueDetails/' + data["IssueID"];
                             }      
                         });
                

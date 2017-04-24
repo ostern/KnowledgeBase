@@ -60,15 +60,17 @@ namespace KnowledgeBase.Controllers
             _context.SaveChanges();
             return RedirectToAction("Search", "Search");
         }
+        [HttpPost]
         public ActionResult Edit(Issue issue)
         {
             var issuedetailed = _context.Issues.SingleOrDefault(x => x.IssueID == issue.IssueID);
      //       issue.Username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             issue.DateIssueCreation = DateTime.Now;
             //  _context.Issues.Add(issue);
-            issuedetailed = issue;
+            _context.Entry(issuedetailed).CurrentValues.SetValues(issue);
+          //  issuedetailed = issue;
             _context.SaveChanges();
-            return RedirectToAction("Search", "Search");
+            return RedirectToAction("IssueDetails", "Search", issue.IssueID);
         }
         public ActionResult AddSolution(int id)
         {
@@ -163,7 +165,7 @@ namespace KnowledgeBase.Controllers
             return View(listofissues);
         }
         
-        public ActionResult IssueDetail(int id)
+        public ActionResult IssueDetails(int id)
         {
             var issuedetailed = _context.Issues.Where(x => x.IssueID == id).Include(c => c.Product).FirstOrDefault();
             var solution = _context.Solutions.Where(x => x.IssueID == id).ToList();
@@ -174,11 +176,9 @@ namespace KnowledgeBase.Controllers
                     Issue = issuedetailed,
                     Solutions = solution
                 };
-           //     return View("IssueSolution", solutionModel);
-           // }
-            
+           
 
-            return View("IssueSolution", solutionModel);
+            return View(solutionModel);
         }
 
         public ActionResult EditIssue(int id)

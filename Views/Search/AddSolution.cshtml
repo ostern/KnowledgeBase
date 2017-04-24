@@ -78,7 +78,7 @@
             foreach (var solution in Model.Solutions)
             {
                 <dd>
-                    @Html.DisplayFor(model => solution.SolutionText)
+                    @Html.Raw(solution.SolutionText)
                 </dd>
             }
         }

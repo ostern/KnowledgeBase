@@ -197,7 +197,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\DAL\BaseContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -312,21 +311,18 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Search\Adding.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Search\ListofIssues.cshtml" />
     <Content Include="Views\Search\NewIssue.cshtml" />
-    <Content Include="Views\Search\IssueDetail.cshtml" />
+    <Content Include="Views\Search\IssueDetail1231231.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_AjaxGrid.cshtml" />
     <Content Include="Views\Search\SearchIssue.cshtml" />
-    <Content Include="Views\Search\IssueSolution.cshtml" />
+    <Content Include="Views\Search\IssueDetails.cshtml" />
     <Content Include="Views\Search\AddSolution.cshtml" />
     <Content Include="Views\Search\EditIssue.cshtml" />
   </ItemGroup>
