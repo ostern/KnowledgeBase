@@ -18,8 +18,8 @@ namespace KnowledgeBase.Models
         public string IssueText { get; set; }
         public string Username { get; set; } 
         public DateTime? DateIssueCreation { get; set; }
-        [Required]
-        [Display(Name = "ProductName")]
+        [Required(ErrorMessage = "Please choose product name")]
+        [Display(Name = "ProductName")]        
         public int ProductId { get; set; }
         public Product Product { get; set; }
     }

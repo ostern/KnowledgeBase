@@ -34,6 +34,7 @@ namespace KnowledgeBase.Migrations
                 new Product { ProductName = "Creditbility"},
                 new Product { ProductName = "CreditFlow" },
                 new Product { ProductName = "CreditBerueu" },
+                new Product { ProductName = "StrategyOne" },
                 new Product { ProductName = "Rapid" }
                 );
 

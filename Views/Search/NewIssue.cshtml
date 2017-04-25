@@ -89,7 +89,7 @@
                 success: function (url) {
                     $('#summernote').summernote('insertImage', url);
                 },
-                error: function (jqXHR, textStatus, errorThrown) {
+                error: function (jqXhR, textStatus, errorThrown) {
                     alert(textStatus + " " + errorThrown);
                 }
             });
