@@ -11,6 +11,7 @@
 <div class="panel-body">
     @using (Html.BeginForm("Edit", "Search", FormMethod.Post))
     {
+        @Html.AntiForgeryToken()
         <div class="form-group">
             @Html.LabelFor(m => m.Issue.ProductId)
             @Html.DropDownListFor(m => m.Issue.ProductId, new SelectList(Model.Products, "ProductID", "ProductName"), "select Product", new { @class = "form-control" })

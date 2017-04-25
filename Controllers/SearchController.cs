@@ -51,6 +51,7 @@ namespace KnowledgeBase.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Create(Issue issue)
         {
             
@@ -61,6 +62,7 @@ namespace KnowledgeBase.Controllers
             return RedirectToAction("Search", "Search");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Edit(Issue issue)
         {
             var issuedetailed = _context.Issues.SingleOrDefault(x => x.IssueID == issue.IssueID);
@@ -68,10 +70,11 @@ namespace KnowledgeBase.Controllers
             issue.DateIssueCreation = DateTime.Now;
             //  _context.Issues.Add(issue);
             _context.Entry(issuedetailed).CurrentValues.SetValues(issue);
-          //  issuedetailed = issue;
+         //   var id = issue.IssueID;
             _context.SaveChanges();
-            return RedirectToAction("IssueDetails", "Search", issue.IssueID);
+            return RedirectToAction("Search", "Search");
         }
+
         public ActionResult AddSolution(int id)
         {
             var issuedetailed = _context.Issues.Where(x => x.IssueID == id).Include(c => c.Product).FirstOrDefault();
@@ -89,10 +92,10 @@ namespace KnowledgeBase.Controllers
             }
 
 
-//            return View(issuedetailed);
-            
-  //      }
+        //            return View(issuedetailed);
 
+        //      }
+        [ValidateAntiForgeryToken()]
         public ActionResult SaveSolution(Solution solution)
         {
 
@@ -164,7 +167,7 @@ namespace KnowledgeBase.Controllers
             
             return View(listofissues);
         }
-        
+        [HttpGet]
         public ActionResult IssueDetails(int id)
         {
             var issuedetailed = _context.Issues.Where(x => x.IssueID == id).Include(c => c.Product).FirstOrDefault();
@@ -180,7 +183,7 @@ namespace KnowledgeBase.Controllers
 
             return View(solutionModel);
         }
-
+        
         public ActionResult EditIssue(int id)
         {
             var issuetoedit = _context.Issues.Where(x => x.IssueID == id).Include(c => c.Product).FirstOrDefault();

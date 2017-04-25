@@ -91,6 +91,7 @@
     <div class="panel-body">
         @using (Html.BeginForm("SaveSolution", "Search"))
         {
+            @Html.AntiForgeryToken()
             <div class="form-horizontal">
 
                 <div class="col-lg-9">

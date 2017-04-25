@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201704211420313_solutionsfields.Designer.cs">
       <DependentUpon>201704211420313_solutionsfields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704252004162_strategyone.cs" />
+    <Compile Include="Migrations\201704252004162_strategyone.Designer.cs">
+      <DependentUpon>201704252004162_strategyone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -313,11 +317,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Search\Adding.cshtml" />
+    <Content Include="Views\Search\Adding123123123.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Search\ListofIssues.cshtml" />
     <Content Include="Views\Search\NewIssue.cshtml" />
-    <Content Include="Views\Search\IssueDetail1231231.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_AjaxGrid.cshtml" />
@@ -370,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704211420313_solutionsfields.resx">
       <DependentUpon>201704211420313_solutionsfields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704252004162_strategyone.resx">
+      <DependentUpon>201704252004162_strategyone.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

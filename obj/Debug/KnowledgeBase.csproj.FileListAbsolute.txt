@@ -93,3 +93,4 @@ C:\Users\sl813viksive\Documents\Visual Studio 2015\Projects\KnowledgeBase\Knowle
 C:\Users\sl813viksive\Documents\Visual Studio 2015\Projects\KnowledgeBase\KnowledgeBase\obj\Debug\KnowledgeBase.pdb
 C:\Users\sl813viksive\Documents\Visual Studio 2015\Projects\KnowledgeBase\KnowledgeBase\obj\Debug\KnowledgeBase.csprojResolveAssemblyReference.cache
 C:\Users\sl813viksive\Documents\Visual Studio 2015\Projects\KnowledgeBase\KnowledgeBase\obj\Debug\KnowledgeBase.Migrations.solutionsfields.resources
+C:\Users\sl813viksive\Documents\Visual Studio 2015\Projects\KnowledgeBase\KnowledgeBase\obj\Debug\KnowledgeBase.Migrations.strategyone.resources
